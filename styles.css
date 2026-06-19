@@ -1,0 +1,52 @@
+body{
+    background-image: url(Gemini_Generated_Image_5tgpfe5tgpfe5tgp.png);
+    background-position: center;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#elegir{
+    font-weight: bold;
+}
+
+#pokemons{
+    background: green;
+    color:black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border-color: black;
+    cursor: pointer;
+    width: 100%;
+
+}
+
+#container{
+    display: flex;
+    margin-bottom: 40px;
+}
+
+#pokemon-info{
+    max-width: 1000px;
+    margin: 0 auto;
+    background: bisque;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    display: none;
+}
+
+#pokemon-image{
+    width: 50%;
+    height: 50%;
+}
+
+ul{
+    text-align: left;
+    list-style-type: none;
+}

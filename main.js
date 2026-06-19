@@ -16,33 +16,47 @@ const loadPokemons = async () => {
 }
 
 loadPokemons();
-
 const pokemonSelected = async (pokemonUrl) => {
     try {
-
-        const response = await fetch(pokemonUrl).then(response => response.json());
-
         const pokemonImage = document.getElementById("pokemon-image");
         const pokemonName = document.getElementById("pokemon-name");
         const pokemonStats = document.getElementById("pokemon-stats");
+        const pokemonsAbs = document.getElementById("pokemon-abs");
+        const titleAbilities = document.getElementById("title-abilities");
+        const pokemonInfo = document.getElementById("pokemon-info");
 
-        pokemonImage.src = response.sprites.front_default;
-        pokemonName.textContent = response.name;
+        if (pokemonUrl === "") {
+            pokemonImage.removeAttribute("src");
+            pokemonName.textContent = "";
+            pokemonStats.innerHTML = "";
+            pokemonsAbs.innerHTML = "";
+            titleAbilities.textContent = "";
+            pokemonInfo.style.display = "none";
+        } else {
+            const response = await fetch(pokemonUrl).then(response => response.json());
+            pokemonInfo.style.display = "inline-block";
+            pokemonImage.src = response.sprites.front_default;
+            pokemonName.textContent = response.name;
 
-        pokemonStats.innerHTML = "";
+            pokemonStats.innerHTML = "";
 
-        response.stats.forEach(stat => {
-            const li = document.createElement("li");
-            li.textContent = `${stat.stat.name}: ${stat.base_stat}`;
-            pokemonStats.appendChild(li);
+            response.stats.forEach(stat => {
+                const li = document.createElement("li");
+                li.textContent = `${stat.stat.name}: ${stat.base_stat}`;
+                pokemonStats.appendChild(li);
 
-        })
+            })
+
+            pokemonsAbs.innerHTML = "";
+            titleAbilities.textContent = "Habilidades del pokemon: ";
+
+            response.abilities.forEach(data => {
+                const li = document.createElement("li");
+                li.textContent = data.ability.name;
+                pokemonsAbs.appendChild(li);
+            });
+        }
     } catch (error) {
         console.error("Error fetching pokemon details:", error);
     }
-}
-// fetch(`${POKEAPI_URL}/pokemon`)
-// .then(response => response.json())
-// .then(data => {
-//     console.log(data);
-// });
+};
